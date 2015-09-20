@@ -7,6 +7,7 @@
 package proyecto4.hu;
 
 import java.util.ArrayList;
+//
 
 public class Actores {
     String nombre;
