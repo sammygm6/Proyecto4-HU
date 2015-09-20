@@ -96,6 +96,7 @@ public class Proyecto extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
+        Modificar_relacion = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -594,6 +595,17 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        javax.swing.GroupLayout Modificar_relacionLayout = new javax.swing.GroupLayout(Modificar_relacion.getContentPane());
+        Modificar_relacion.getContentPane().setLayout(Modificar_relacionLayout);
+        Modificar_relacionLayout.setHorizontalGroup(
+            Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        Modificar_relacionLayout.setVerticalGroup(
+            Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -763,6 +775,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JDialog Agregar_relacion;
     private javax.swing.JDialog Eliminar;
     private javax.swing.JDialog Modificar;
+    private javax.swing.JDialog Modificar_relacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
