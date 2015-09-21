@@ -9,16 +9,22 @@ package proyecto4.hu;
 import java.util.ArrayList;
 //
 
-public class Actores {
+public class Actor {
     String nombre;
     String edad;
     String nacionalidad;
-    ArrayList<Peliculas> lista_peliculas;
+    ArrayList<Pelicula> lista_peliculas;
 
-    public Actores() {
+    public Actor() {
     }
 
-    public Actores(String nombre, String edad, String nacionalidad, ArrayList<Peliculas> lista_peliculas) {
+    public Actor(String nombre, String edad, String nacionalidad) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.nacionalidad = nacionalidad;
+    }
+    
+    public Actor(String nombre, String edad, String nacionalidad, ArrayList<Pelicula> lista_peliculas) {
         this.nombre = nombre;
         this.edad = edad;
         this.nacionalidad = nacionalidad;
@@ -49,11 +55,11 @@ public class Actores {
         this.nacionalidad = nacionalidad;
     }
 
-    public ArrayList<Peliculas> getLista_peliculas() {
+    public ArrayList<Pelicula> getLista_peliculas() {
         return lista_peliculas;
     }
 
-    public void setLista_peliculas(ArrayList<Peliculas> lista_peliculas) {
+    public void setLista_peliculas(ArrayList<Pelicula> lista_peliculas) {
         this.lista_peliculas = lista_peliculas;
     } 
 }

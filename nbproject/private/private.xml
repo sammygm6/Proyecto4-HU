@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Recuperacion/Documents/NetBeansProjects/Proyecto4-HU/src/proyecto4/hu/MyNode.java</file>
+            <file>file:/C:/Recuperacion/Documents/NetBeansProjects/Proyecto4-HU/src/proyecto4/hu/Pelicula.java</file>
+            <file>file:/C:/Recuperacion/Documents/NetBeansProjects/Proyecto4-HU/src/proyecto4/hu/Actor.java</file>
+            <file>file:/C:/Recuperacion/Documents/NetBeansProjects/Proyecto4-HU/src/proyecto4/hu/MyLink.java</file>
+            <file>file:/C:/Recuperacion/Documents/NetBeansProjects/Proyecto4-HU/src/proyecto4/hu/Proyecto.java</file>
+        </group>
+>>>>>>> Agregar
     </open-files>
 </project-private>

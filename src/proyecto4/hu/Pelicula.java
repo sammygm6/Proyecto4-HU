@@ -1,14 +1,14 @@
 package proyecto4.hu;
 
-public class Peliculas {
+public class Pelicula {
     String titulo;
     String año;
     String estudio;
 
-    public Peliculas() {
+    public Pelicula() {
     }
 
-    public Peliculas(String titulo, String año, String estudio) {
+    public Pelicula(String titulo, String año, String estudio) {
         this.titulo = titulo;
         this.año = año;
         this.estudio = estudio;

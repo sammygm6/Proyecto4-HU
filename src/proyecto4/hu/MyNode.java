@@ -11,7 +11,9 @@ package proyecto4.hu;
  * @author User
  */
 public class MyNode {
+    
     private int id;
+    private Actor actor;
 
     public MyNode() {
     }
@@ -20,6 +22,19 @@ public class MyNode {
         this.id = id;
     }
 
+    public MyNode(int id, Actor actor) {
+        this.id = id;
+        this.actor = actor;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
+    }
+    
     public int getId() {
         return id;
     }
@@ -27,6 +42,12 @@ public class MyNode {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "V"+id;
+    }
+    
     
     
 }

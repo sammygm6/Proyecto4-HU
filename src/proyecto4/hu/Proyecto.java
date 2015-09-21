@@ -5,6 +5,10 @@
  */
 package proyecto4.hu;
 
+import edu.uci.ics.jung.graph.UndirectedSparseGraph;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -28,18 +32,19 @@ public class Proyecto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Agregar = new javax.swing.JDialog();
+        jd_AgregarNuevoActor = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tf_NuevoNombreActor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        sp_NuevoEdadActor = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tf_NuevoActorNacionalidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        BotonAgregarNuevoActor = new javax.swing.JButton();
+        cb_NuevoPeliculaAActor = new javax.swing.JComboBox();
+        AgregarNuevaPeliculaAActor = new javax.swing.JButton();
         Modificar = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -71,9 +76,9 @@ public class Proyecto extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox5 = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        cb_AgregarNuevoRelacionActor1 = new javax.swing.JComboBox();
+        cb_AgregarNuevaRelacionActor2 = new javax.swing.JComboBox();
+        BotonAgregarNuevaRelacion = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jRadioButton5 = new javax.swing.JRadioButton();
@@ -86,16 +91,16 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        Agregar_pelicula = new javax.swing.JDialog();
+        jd_AgregarNuevaPelicula = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        tf_AgregarNuevoPeliculaTitulo = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
+        tf_AgregarNuevoPeliculaEstudio = new javax.swing.JTextField();
+        BotonAgregarNuevaPelicula = new javax.swing.JButton();
+        tf_AgregarNuevoPeliculaAñoDeExhibicion = new javax.swing.JTextField();
         Modificar_relacion = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -122,7 +127,7 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Edad");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        sp_NuevoEdadActor.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Nacionalidad");
@@ -130,7 +135,19 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Peliculas Realizadas");
 
-        jButton1.setText("Agregar");
+        BotonAgregarNuevoActor.setText("Agregar");
+        BotonAgregarNuevoActor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonAgregarNuevoActorMouseClicked(evt);
+            }
+        });
+
+        AgregarNuevaPeliculaAActor.setText("Agregar Pelicula");
+        AgregarNuevaPeliculaAActor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarNuevaPeliculaAActorMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,16 +164,18 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 277, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(tf_NuevoNombreActor, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sp_NuevoEdadActor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_NuevoActorNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(AgregarNuevaPeliculaAActor))))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(226, 226, 226)
-                .addComponent(jButton1)
+                .addComponent(BotonAgregarNuevoActor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -167,32 +186,34 @@ public class Proyecto extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_NuevoNombreActor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sp_NuevoEdadActor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_NuevoActorNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AgregarNuevaPeliculaAActor)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(BotonAgregarNuevoActor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout AgregarLayout = new javax.swing.GroupLayout(Agregar.getContentPane());
-        Agregar.getContentPane().setLayout(AgregarLayout);
-        AgregarLayout.setHorizontalGroup(
-            AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jd_AgregarNuevoActorLayout = new javax.swing.GroupLayout(jd_AgregarNuevoActor.getContentPane());
+        jd_AgregarNuevoActor.getContentPane().setLayout(jd_AgregarNuevoActorLayout);
+        jd_AgregarNuevoActorLayout.setHorizontalGroup(
+            jd_AgregarNuevoActorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        AgregarLayout.setVerticalGroup(
-            AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jd_AgregarNuevoActorLayout.setVerticalGroup(
+            jd_AgregarNuevoActorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -363,7 +384,12 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("El actor");
 
-        jButton2.setText("Agregar Relacion");
+        BotonAgregarNuevaRelacion.setText("Agregar Relacion");
+        BotonAgregarNuevaRelacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonAgregarNuevaRelacionMouseClicked(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel16.setText("Con");
@@ -404,14 +430,14 @@ public class Proyecto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton8))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jButton2))
+                        .addComponent(BotonAgregarNuevaRelacion))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel15)))
@@ -425,21 +451,21 @@ public class Proyecto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jRadioButton5)
                         .addComponent(jRadioButton6)
                         .addComponent(jRadioButton7)
-                        .addComponent(jRadioButton8)))
+                        .addComponent(jRadioButton8))
+                    .addComponent(jLabel15))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(36, 36, 36)
-                .addComponent(jButton2)
+                .addComponent(BotonAgregarNuevaRelacion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -529,7 +555,12 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel27.setText("Estudio");
 
-        jButton5.setText("Agregar");
+        BotonAgregarNuevaPelicula.setText("Agregar");
+        BotonAgregarNuevaPelicula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonAgregarNuevaPeliculaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -546,20 +577,20 @@ public class Proyecto extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jTextField10))
+                                .addComponent(tf_AgregarNuevoPeliculaEstudio))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_AgregarNuevoPeliculaTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tf_AgregarNuevoPeliculaAñoDeExhibicion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(219, 219, 219)))))
                         .addGap(60, 60, 60))
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(224, 224, 224)
-                .addComponent(jButton5)
+                .addComponent(BotonAgregarNuevaPelicula)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -570,28 +601,28 @@ public class Proyecto extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel25)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_AgregarNuevoPeliculaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_AgregarNuevoPeliculaAñoDeExhibicion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_AgregarNuevoPeliculaEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(BotonAgregarNuevaPelicula)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout Agregar_peliculaLayout = new javax.swing.GroupLayout(Agregar_pelicula.getContentPane());
-        Agregar_pelicula.getContentPane().setLayout(Agregar_peliculaLayout);
-        Agregar_peliculaLayout.setHorizontalGroup(
-            Agregar_peliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jd_AgregarNuevaPeliculaLayout = new javax.swing.GroupLayout(jd_AgregarNuevaPelicula.getContentPane());
+        jd_AgregarNuevaPelicula.getContentPane().setLayout(jd_AgregarNuevaPeliculaLayout);
+        jd_AgregarNuevaPeliculaLayout.setHorizontalGroup(
+            jd_AgregarNuevaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        Agregar_peliculaLayout.setVerticalGroup(
-            Agregar_peliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jd_AgregarNuevaPeliculaLayout.setVerticalGroup(
+            jd_AgregarNuevaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -613,8 +644,6 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText(" HOLLYWOOD UNIVERSE");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Daniela Odileth\\Pictures\\h.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -700,10 +729,10 @@ public class Proyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Agregar.setModal(true);
-        Agregar.pack();
-        Agregar.setLocationRelativeTo(null);
-        Agregar.setVisible(true);
+        jd_AgregarNuevoActor.setModal(true);
+        jd_AgregarNuevoActor.pack();
+        jd_AgregarNuevoActor.setLocationRelativeTo(null);
+        jd_AgregarNuevoActor.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
@@ -728,12 +757,74 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       Agregar_pelicula.setModal(true);
-       Agregar_pelicula.pack();
-       Agregar_pelicula.setLocationRelativeTo(null);
-       Agregar_pelicula.setVisible(true);
+       jd_AgregarNuevaPelicula.setModal(true);
+       jd_AgregarNuevaPelicula.pack();
+       jd_AgregarNuevaPelicula.setLocationRelativeTo(null);
+       jd_AgregarNuevaPelicula.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void BotonAgregarNuevoActorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAgregarNuevoActorMouseClicked
+        // Evento Agregar nuevo actor
+        String nombre = this.tf_NuevoNombreActor.getText();
+        String edad = this.sp_NuevoEdadActor.getValue().toString();
+        String nacionalidad = this.tf_NuevoActorNacionalidad.getText();
+        Actor NuevoActor = new Actor(nombre,edad,nacionalidad,this.peliculas_agregar_a_nuevo_actor);
+        actores.add(NuevoActor);
+        this.peliculas_agregar_a_nuevo_actor = new ArrayList();
+        JOptionPane.showMessageDialog(this, "Agrego un nuevo actor exitosamente");
+        this.jd_AgregarNuevoActor.setVisible(false);
+    }//GEN-LAST:event_BotonAgregarNuevoActorMouseClicked
+
+    private void AgregarNuevaPeliculaAActorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarNuevaPeliculaAActorMouseClicked
+        // evento para ir agregando peliculas individualmente para los actores nuevos que se van creando poe
+        String NombrePelicula = this.cb_NuevoPeliculaAActor.getSelectedItem().toString();
+        for (int i = 0; i < peliculas.size(); i++) {
+            if (peliculas.get(i).getTitulo().equals(NombrePelicula)) {
+                this.peliculas_agregar_a_nuevo_actor.add(peliculas.get(i));
+            }
+        }
+    }//GEN-LAST:event_AgregarNuevaPeliculaAActorMouseClicked
+
+    private void BotonAgregarNuevaPeliculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAgregarNuevaPeliculaMouseClicked
+        // Evento para agregar una nueva pelicula
+        String titulo = this.tf_AgregarNuevoPeliculaTitulo.getText();
+        String año = this.tf_AgregarNuevoPeliculaAñoDeExhibicion.getText();
+        String estudio = this.tf_AgregarNuevoPeliculaEstudio.getText();
+        Pelicula NuevaPelicula = new Pelicula(titulo,año,estudio);
+        peliculas.add(NuevaPelicula);
+        this.jd_AgregarNuevaPelicula.setVisible(false);
+    }//GEN-LAST:event_BotonAgregarNuevaPeliculaMouseClicked
+
+    private void BotonAgregarNuevaRelacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAgregarNuevaRelacionMouseClicked
+        // evento para agregar una nueva relacion
+        String NombreActor1 = this.cb_AgregarNuevoRelacionActor1.getSelectedItem().toString();
+        String NombreActor2 = this.cb_AgregarNuevaRelacionActor2.getSelectedItem().toString();
+        if (!(isInList(NombreActor1) || !(isInList(NombreActor2)))) {
+            this.cb_AgregarNuevoRelacionActor1.setSelectedIndex(0);
+            this.cb_AgregarNuevaRelacionActor2.setSelectedIndex(0);
+            JOptionPane.showMessageDialog(this, "No se encontro alguno de los actores");
+        }else{
+            
+            MyNode Nodo1 = new MyNode();
+            MyNode Nodo2 = new MyNode();
+        }
+    }//GEN-LAST:event_BotonAgregarNuevaRelacionMouseClicked
+    private boolean isInList(String nombre){
+        for (int i = 0; i < this.actores.size(); i++) {
+            if (actores.get(i).getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private Actor getActor(String nombreActor){
+        for (int i = 0; i < this.actores.size(); i++) {
+            if (actores.get(i).getNombre().equals(nombreActor)) {
+                return actores.get(i);
+            }
+        }
+        return null;
+    }
     /**
      * @param args the command line arguments
      */
@@ -770,21 +861,20 @@ public class Proyecto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Agregar;
-    private javax.swing.JDialog Agregar_pelicula;
+    private javax.swing.JButton AgregarNuevaPeliculaAActor;
     private javax.swing.JDialog Agregar_relacion;
+    private javax.swing.JButton BotonAgregarNuevaPelicula;
+    private javax.swing.JButton BotonAgregarNuevaRelacion;
+    private javax.swing.JButton BotonAgregarNuevoActor;
     private javax.swing.JDialog Eliminar;
     private javax.swing.JDialog Modificar;
     private javax.swing.JDialog Modificar_relacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox cb_AgregarNuevaRelacionActor2;
+    private javax.swing.JComboBox cb_AgregarNuevoRelacionActor1;
+    private javax.swing.JComboBox cb_NuevoPeliculaAActor;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -837,18 +927,24 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JDialog jd_AgregarNuevaPelicula;
+    private javax.swing.JDialog jd_AgregarNuevoActor;
+    private javax.swing.JSpinner sp_NuevoEdadActor;
+    private javax.swing.JTextField tf_AgregarNuevoPeliculaAñoDeExhibicion;
+    private javax.swing.JTextField tf_AgregarNuevoPeliculaEstudio;
+    private javax.swing.JTextField tf_AgregarNuevoPeliculaTitulo;
+    private javax.swing.JTextField tf_NuevoActorNacionalidad;
+    private javax.swing.JTextField tf_NuevoNombreActor;
     // End of variables declaration//GEN-END:variables
+ArrayList<Pelicula> peliculas;
+ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
+ArrayList<Actor> actores = new ArrayList();
+UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode,MyLink>();
 }
