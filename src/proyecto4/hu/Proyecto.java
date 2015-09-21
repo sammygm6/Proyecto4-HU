@@ -459,12 +459,8 @@ public class Proyecto extends javax.swing.JFrame {
                         .addComponent(jRadioButton6)
                         .addComponent(jRadioButton7)
                         .addComponent(jRadioButton8))
-<<<<<<< HEAD
-                    .addComponent(jLabel15))
-=======
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel15)))
->>>>>>> 4811a2ec1e7303e8d6be4c8cb2765c431c44e51d
+                    .addComponent(jLabel15)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)

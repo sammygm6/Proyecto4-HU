@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-=======
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
->>>>>>> 4811a2ec1e7303e8d6be4c8cb2765c431c44e51d
-  <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="Agregar">
-=======
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="jd_AgregarNuevoActor">
->>>>>>> Agregar
 
       <Layout>
         <DimensionLayout dim="0">
@@ -52,13 +42,6 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                                  <Component id="jTextField1" alignment="0" min="-2" pref="337" max="-2" attributes="0"/>
-                                  <Component id="jSpinner1" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jComboBox1" alignment="0" pref="277" max="32767" attributes="0"/>
-                                      <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-=======
                                   <Component id="tf_NuevoNombreActor" alignment="0" min="-2" pref="337" max="-2" attributes="0"/>
                                   <Component id="sp_NuevoEdadActor" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="tf_NuevoActorNacionalidad" alignment="0" min="-2" pref="277" max="-2" attributes="0"/>
@@ -66,7 +49,6 @@
                                       <Component id="cb_NuevoPeliculaAActor" min="-2" pref="188" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="AgregarNuevaPeliculaAActor" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                                   </Group>
                               </Group>
                           </Group>
@@ -76,11 +58,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-=======
                       <Component id="BotonAgregarNuevoActor" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -93,39 +71,21 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jTextField1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-=======
                           <Component id="tf_NuevoNombreActor" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
->>>>>>> Agregar
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jSpinner1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-=======
                           <Component id="sp_NuevoEdadActor" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
->>>>>>> Agregar
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jTextField2" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-=======
                           <Component id="tf_NuevoActorNacionalidad" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
->>>>>>> Agregar
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jComboBox1" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-=======
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="cb_NuevoPeliculaAActor" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="AgregarNuevaPeliculaAActor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -133,7 +93,6 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BotonAgregarNuevoActor" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -159,11 +118,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre Completo"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JTextField" name="jTextField1">
-=======
             <Component class="javax.swing.JTextField" name="tf_NuevoNombreActor">
->>>>>>> Agregar
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -173,11 +128,7 @@
                 <Property name="text" type="java.lang.String" value="Edad"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JSpinner" name="jSpinner1">
-=======
             <Component class="javax.swing.JSpinner" name="sp_NuevoEdadActor">
->>>>>>> Agregar
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="1" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -192,11 +143,7 @@
                 <Property name="text" type="java.lang.String" value="Nacionalidad"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JTextField" name="jTextField2">
-=======
             <Component class="javax.swing.JTextField" name="tf_NuevoActorNacionalidad">
->>>>>>> Agregar
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -206,14 +153,6 @@
                 <Property name="text" type="java.lang.String" value="Peliculas Realizadas"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JButton" name="jButton1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
-=======
             <Component class="javax.swing.JButton" name="BotonAgregarNuevoActor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
@@ -223,15 +162,12 @@
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cb_NuevoPeliculaAActor">
->>>>>>> Agregar
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
             </Component>
-<<<<<<< HEAD
-=======
             <Component class="javax.swing.JButton" name="AgregarNuevaPeliculaAActor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Pelicula"/>
@@ -240,7 +176,6 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AgregarNuevaPeliculaAActorMouseClicked"/>
               </Events>
             </Component>
->>>>>>> Agregar
           </SubComponents>
         </Container>
       </SubComponents>
@@ -580,13 +515,8 @@
                                       <Component id="jRadioButton8" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                                      <Component id="jComboBox5" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
-                                      <Component id="jComboBox3" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
-=======
                                       <Component id="cb_AgregarNuevaRelacionActor2" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
                                       <Component id="cb_AgregarNuevoRelacionActor1" alignment="1" min="-2" pref="290" max="-2" attributes="0"/>
->>>>>>> Agregar
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -597,11 +527,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-=======
                               <Component id="BotonAgregarNuevaRelacion" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -620,47 +546,19 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jComboBox3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-=======
                           <Component id="cb_AgregarNuevoRelacionActor1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
->>>>>>> Agregar
-=======
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
->>>>>>> 4811a2ec1e7303e8d6be4c8cb2765c431c44e51d
                               <Component id="jRadioButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
->>>>>>> 4811a2ec1e7303e8d6be4c8cb2765c431c44e51d
-                      </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jComboBox5" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-=======
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -669,7 +567,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="BotonAgregarNuevaRelacion" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -695,34 +592,20 @@
                 <Property name="text" type="java.lang.String" value="El actor"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JComboBox" name="jComboBox3">
-=======
             <Component class="javax.swing.JComboBox" name="cb_AgregarNuevoRelacionActor1">
->>>>>>> Agregar
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JComboBox" name="jComboBox5">
-=======
             <Component class="javax.swing.JComboBox" name="cb_AgregarNuevaRelacionActor2">
->>>>>>> Agregar
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JButton" name="jButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Relacion"/>
-              </Properties>
-=======
             <Component class="javax.swing.JButton" name="BotonAgregarNuevaRelacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Relacion"/>
@@ -730,7 +613,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BotonAgregarNuevaRelacionMouseClicked"/>
               </Events>
->>>>>>> Agregar
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
@@ -867,11 +749,7 @@
         </Container>
       </SubComponents>
     </Container>
-<<<<<<< HEAD
-    <Container class="javax.swing.JDialog" name="Agregar_pelicula">
-=======
     <Container class="javax.swing.JDialog" name="jd_AgregarNuevaPelicula">
->>>>>>> Agregar
 
       <Layout>
         <DimensionLayout dim="0">
@@ -911,24 +789,14 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                                      <Component id="jTextField10" max="32767" attributes="0"/>
-=======
                                       <Component id="tf_AgregarNuevoPeliculaEstudio" max="32767" attributes="0"/>
->>>>>>> Agregar
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                                          <Component id="jTextField9" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jTextField11" min="-2" pref="80" max="-2" attributes="0"/>
-=======
                                           <Component id="tf_AgregarNuevoPeliculaTitulo" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="tf_AgregarNuevoPeliculaAñoDeExhibicion" min="-2" pref="80" max="-2" attributes="0"/>
->>>>>>> Agregar
                                               <EmptySpace min="219" pref="219" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -942,11 +810,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
-=======
                       <Component id="BotonAgregarNuevaPelicula" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -959,36 +823,20 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jTextField9" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField11" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-=======
                           <Component id="tf_AgregarNuevoPeliculaTitulo" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tf_AgregarNuevoPeliculaAñoDeExhibicion" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
->>>>>>> Agregar
                           <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
-                          <Component id="jTextField10" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
-=======
                           <Component id="tf_AgregarNuevoPeliculaEstudio" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="BotonAgregarNuevaPelicula" min="-2" max="-2" attributes="0"/>
->>>>>>> Agregar
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1014,11 +862,7 @@
                 <Property name="text" type="java.lang.String" value="Titulo"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JTextField" name="jTextField9">
-=======
             <Component class="javax.swing.JTextField" name="tf_AgregarNuevoPeliculaTitulo">
->>>>>>> Agregar
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
@@ -1036,16 +880,6 @@
                 <Property name="text" type="java.lang.String" value="Estudio"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JTextField" name="jTextField10">
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField11">
-=======
             <Component class="javax.swing.JTextField" name="tf_AgregarNuevoPeliculaEstudio">
             </Component>
             <Component class="javax.swing.JButton" name="BotonAgregarNuevaPelicula">
@@ -1057,7 +891,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tf_AgregarNuevoPeliculaA&#xf1;oDeExhibicion">
->>>>>>> Agregar
             </Component>
           </SubComponents>
         </Container>
@@ -1212,14 +1045,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
-<<<<<<< HEAD
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Daniela Odileth\Pictures\h.jpg"/>
-            </Property>
-          </Properties>
-=======
->>>>>>> Agregar
         </Component>
       </SubComponents>
     </Container>
