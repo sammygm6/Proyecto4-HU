@@ -7,6 +7,7 @@ package proyecto4.hu;
 
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,29 +50,31 @@ public class Proyecto extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        m_edad = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        m_nacionalidad = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        m_pelicula = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        b_edad = new javax.swing.JRadioButton();
+        b_nacionalidad = new javax.swing.JRadioButton();
+        b_peliculas = new javax.swing.JRadioButton();
         jLabel18 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
+        bn_nombre = new javax.swing.JRadioButton();
+        b_titulo = new javax.swing.JRadioButton();
+        b_año = new javax.swing.JRadioButton();
+        b_estudio = new javax.swing.JRadioButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        m_titulo = new javax.swing.JTextField();
+        m_año = new javax.swing.JTextField();
+        m_estudio = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        buscar_nombre = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        m_nombre = new javax.swing.JTextField();
         Agregar_relacion = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -102,6 +105,10 @@ public class Proyecto extends javax.swing.JFrame {
         BotonAgregarNuevaPelicula = new javax.swing.JButton();
         tf_AgregarNuevoPeliculaAñoDeExhibicion = new javax.swing.JTextField();
         Modificar_relacion = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        actor = new javax.swing.ButtonGroup();
+        pelicula = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -168,8 +175,8 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(sp_NuevoEdadActor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_NuevoActorNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(AgregarNuevaPeliculaAActor))))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
@@ -199,9 +206,9 @@ public class Proyecto extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_NuevoPeliculaAActor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(AgregarNuevaPeliculaAActor)))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addComponent(BotonAgregarNuevoActor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -229,7 +236,7 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setText("Edad");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        m_edad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setText("Nacionalidad");
@@ -237,31 +244,96 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Peliculas");
 
+        m_pelicula.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                m_peliculaItemStateChanged(evt);
+            }
+        });
+
         jLabel17.setText("¿Qué desea modificar?");
 
-        jRadioButton1.setText("Edad");
+        actor.add(b_edad);
+        b_edad.setText("Edad");
+        b_edad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_edadItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton2.setText("Nacionalidad");
+        actor.add(b_nacionalidad);
+        b_nacionalidad.setText("Nacionalidad");
+        b_nacionalidad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_nacionalidadItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton3.setText("Peliculas");
+        actor.add(b_peliculas);
+        b_peliculas.setText("Peliculas");
+        b_peliculas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_peliculasItemStateChanged(evt);
+            }
+        });
 
         jLabel18.setText("¿Qué desea modificar?");
 
-        jRadioButton4.setText("Nombre");
+        actor.add(bn_nombre);
+        bn_nombre.setText("Nombre");
+        bn_nombre.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                bn_nombreItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton9.setText("Titulo");
+        pelicula.add(b_titulo);
+        b_titulo.setText("Titulo");
+        b_titulo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_tituloItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton10.setText("Año");
+        pelicula.add(b_año);
+        b_año.setText("Año");
+        b_año.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_añoItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton11.setText("Estudio");
+        pelicula.add(b_estudio);
+        b_estudio.setText("Estudio");
+        b_estudio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                b_estudioItemStateChanged(evt);
+            }
+        });
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel19.setText("Titulo");
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel20.setText("Año");
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setText("Estudio");
 
         jButton3.setText("Modificar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        buscar_nombre.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                buscar_nombreItemStateChanged(evt);
+            }
+        });
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel28.setText("Nombre");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -273,43 +345,58 @@ public class Proyecto extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel21))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jRadioButton9)
-                                .addGap(10, 10, 10)
-                                .addComponent(jRadioButton10)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton11))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton4))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel28))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(m_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(m_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(m_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(b_edad)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(b_nacionalidad)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(b_peliculas)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(bn_nombre))
+                                    .addComponent(buscar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel19))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(m_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(m_estudio, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(m_año, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel18))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(b_titulo)
+                                            .addGap(10, 10, 10)
+                                            .addComponent(b_año)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(b_estudio))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addGap(49, 49, 49)
+                                            .addComponent(m_pelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(235, 235, 235)
+                .addGap(221, 221, 221)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -318,50 +405,57 @@ public class Proyecto extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
+                    .addComponent(b_edad)
+                    .addComponent(b_nacionalidad)
+                    .addComponent(b_peliculas)
                     .addComponent(jLabel17)
-                    .addComponent(jRadioButton4))
+                    .addComponent(bn_nombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(m_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(m_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_pelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jRadioButton9)
-                    .addComponent(jRadioButton10)
-                    .addComponent(jRadioButton11))
+                    .addComponent(b_titulo)
+                    .addComponent(b_año)
+                    .addComponent(b_estudio))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_año, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGap(16, 16, 16)
+                .addComponent(jButton3))
         );
 
         javax.swing.GroupLayout ModificarLayout = new javax.swing.GroupLayout(Modificar.getContentPane());
@@ -372,7 +466,9 @@ public class Proyecto extends javax.swing.JFrame {
         );
         ModificarLayout.setVerticalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ModificarLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -421,18 +517,9 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jRadioButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton8))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33))))
+                            .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -440,7 +527,15 @@ public class Proyecto extends javax.swing.JFrame {
                         .addComponent(BotonAgregarNuevaRelacion))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel15)))
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -453,14 +548,12 @@ public class Proyecto extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton5)
-                        .addComponent(jRadioButton6)
-                        .addComponent(jRadioButton7)
-                        .addComponent(jRadioButton8))
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton6)
+                    .addComponent(jRadioButton7)
+                    .addComponent(jRadioButton8)
+                    .addComponent(jLabel15))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,15 +720,38 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel29.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 35)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel29.setText(" HOLLYWOOD UNIVERSE");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel29)
+                .addContainerGap(344, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout Modificar_relacionLayout = new javax.swing.GroupLayout(Modificar_relacion.getContentPane());
         Modificar_relacion.getContentPane().setLayout(Modificar_relacionLayout);
         Modificar_relacionLayout.setHorizontalGroup(
             Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         Modificar_relacionLayout.setVerticalGroup(
             Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -693,9 +809,9 @@ public class Proyecto extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem3.setText("Modificar Actor");
-        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem3MouseClicked(evt);
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem3);
@@ -736,13 +852,6 @@ public class Proyecto extends javax.swing.JFrame {
         jd_AgregarNuevoActor.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
-        Modificar.setModal(true);
-        Modificar.pack();
-        Modificar.setLocationRelativeTo(null);
-        Modificar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3MouseClicked
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
        Agregar_relacion.setModal(true);
        Agregar_relacion.pack();
@@ -774,6 +883,9 @@ public class Proyecto extends javax.swing.JFrame {
         this.peliculas_agregar_a_nuevo_actor = new ArrayList();
         JOptionPane.showMessageDialog(this, "Agrego un nuevo actor exitosamente");
         this.jd_AgregarNuevoActor.setVisible(false);
+        
+        b_nombre.addElement(nombre);
+        buscar_nombre.setModel(b_nombre);
     }//GEN-LAST:event_BotonAgregarNuevoActorMouseClicked
 
     private void AgregarNuevaPeliculaAActorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarNuevaPeliculaAActorMouseClicked
@@ -810,6 +922,206 @@ public class Proyecto extends javax.swing.JFrame {
             MyNode Nodo2 = new MyNode();
         }
     }//GEN-LAST:event_BotonAgregarNuevaRelacionMouseClicked
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        m_edad.setEnabled(false);
+        m_nacionalidad.setEnabled(false);
+        m_nombre.setEnabled(false);
+        m_pelicula.setEnabled(false);
+        m_titulo.setEnabled(false);
+        m_año.setEnabled(false);
+        m_estudio.setEnabled(false);
+        
+        Modificar.setModal(true);
+        Modificar.pack();
+        Modificar.setLocationRelativeTo(null);
+        Modificar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void buscar_nombreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buscar_nombreItemStateChanged
+         b_nombre = (DefaultComboBoxModel) buscar_nombre.getModel();
+         DefaultComboBoxModel pelicula;
+         
+        String tem = (String) b_nombre.getSelectedItem();
+        validar_nombre = tem;
+        if (evt.getStateChange() == 1) {
+            for (Actor temp :  actores) {
+                if (tem.equalsIgnoreCase(temp.getNombre())) {
+                    m_edad.setValue(temp.getEdad());
+                    m_nacionalidad.setText(temp.getNacionalidad());
+                    m_nombre.setText(temp.getNombre());
+                    
+                    pelicula = (DefaultComboBoxModel) m_pelicula.getModel();
+                    for (int i = 0; i < temp.getLista_peliculas().size(); i++) {
+                        if (temp.getNombre().equalsIgnoreCase(tem)) {
+                            pelicula.addElement(temp.getLista_peliculas().get(i).getTitulo());
+                            m_pelicula.setModel(pelicula);
+                        }
+                    }
+                }
+            }
+        }
+         
+         
+         
+    }//GEN-LAST:event_buscar_nombreItemStateChanged
+
+    private void b_edadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_edadItemStateChanged
+        if(b_edad.isSelected()){
+            m_edad.setEnabled(true);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_b_edadItemStateChanged
+
+    private void b_nacionalidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_nacionalidadItemStateChanged
+        if(b_nacionalidad.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(true);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_b_nacionalidadItemStateChanged
+
+    private void b_peliculasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_peliculasItemStateChanged
+        if(b_peliculas.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(true);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_b_peliculasItemStateChanged
+
+    private void bn_nombreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_bn_nombreItemStateChanged
+        if(bn_nombre.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(true);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_bn_nombreItemStateChanged
+
+    private void m_peliculaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_m_peliculaItemStateChanged
+        b_p = (DefaultComboBoxModel) m_pelicula.getModel();
+        
+        String tem = (String) m_pelicula.getSelectedItem();
+        validar_pelicula = tem;
+        
+        if (evt.getStateChange() == 1) {
+            for (Pelicula temp2 : peliculas) {
+                if (tem.equalsIgnoreCase(temp2.getTitulo())) {
+                    m_titulo.setText(temp2.getTitulo());
+                    m_año.setText(temp2.getAño());
+                    m_estudio.setText(temp2.getEstudio());
+                }
+            }
+        }
+    }//GEN-LAST:event_m_peliculaItemStateChanged
+
+    private void b_tituloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_tituloItemStateChanged
+        if(b_titulo.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(true);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_b_tituloItemStateChanged
+
+    private void b_añoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_añoItemStateChanged
+        if(b_año.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(true);
+            m_estudio.setEnabled(false);
+        }
+    }//GEN-LAST:event_b_añoItemStateChanged
+
+    private void b_estudioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_estudioItemStateChanged
+        if(b_estudio.isSelected()){
+            m_edad.setEnabled(false);
+            m_nacionalidad.setEnabled(false);
+            m_nombre.setEnabled(false);
+            m_pelicula.setEnabled(false);
+            m_titulo.setEnabled(false);
+            m_año.setEnabled(false);
+            m_estudio.setEnabled(true);
+        }
+    }//GEN-LAST:event_b_estudioItemStateChanged
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        for (int i = 0; i < actores.size(); i++) {
+            if (validar_nombre.equalsIgnoreCase(actores.get(i).getNombre())) {
+
+                if (m_edad.isEnabled()) {
+                    actores.get(i).setEdad(m_edad.getValue().toString());
+                } else if (m_nacionalidad.isEnabled()) {
+                    actores.get(i).setNacionalidad(m_nacionalidad.getText());
+
+                } else if (m_nombre.isEnabled()) {
+                    actores.get(i).setNombre(m_nombre.getText());
+                } else {
+                    if (actores.get(i).getLista_peliculas().get(i).getTitulo().equalsIgnoreCase(validar_pelicula)) {
+                        if (m_titulo.isEnabled()) {
+                            actores.get(i).getLista_peliculas().get(i).setTitulo(m_titulo.getText());
+                        } else if (m_año.isEnabled()) {
+                            actores.get(i).getLista_peliculas().get(i).setAño(m_año.getText());
+                        } else if (m_estudio.isEnabled()) {
+                            actores.get(i).getLista_peliculas().get(i).setEstudio(m_estudio.getText());
+                        }
+
+                    }
+                    
+                    for(int j = 0; j < peliculas.size(); j++){
+                        if (validar_pelicula.equalsIgnoreCase(peliculas.get(i).getTitulo())) {
+                            if (m_titulo.isEnabled()) {
+                                peliculas.get(j).setTitulo(m_titulo.getText());
+                            } else if (m_año.isEnabled()) {
+                                peliculas.get(j).setAño(m_año.getText());
+                            } else if (m_estudio.isEnabled()) {
+                                peliculas.get(j).setEstudio(m_estudio.getText());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+       JOptionPane.showMessageDialog(this, "El actor fue modificado correctamente");  
+        m_edad.setEnabled(false);
+//        m_edad.setValue("");
+        m_nacionalidad.setEnabled(false);
+        m_nacionalidad.setText("");
+        m_nombre.setEnabled(false);
+        m_nombre.setText("");
+        m_pelicula.setEnabled(false);
+        m_nombre.setText("");
+        m_titulo.setEnabled(false);
+        m_titulo.setText("");
+        m_año.setEnabled(false);
+        m_año.setText("");
+        m_estudio.setEnabled(false);
+        m_estudio.setText("");
+        Modificar.setVisible(false);
+        
+    }//GEN-LAST:event_jButton3MouseClicked
     private boolean isInList(String nombre){
         for (int i = 0; i < this.actores.size(); i++) {
             if (actores.get(i).getNombre().equals(nombre)) {
@@ -870,12 +1182,20 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JDialog Eliminar;
     private javax.swing.JDialog Modificar;
     private javax.swing.JDialog Modificar_relacion;
+    private javax.swing.ButtonGroup actor;
+    private javax.swing.JRadioButton b_año;
+    private javax.swing.JRadioButton b_edad;
+    private javax.swing.JRadioButton b_estudio;
+    private javax.swing.JRadioButton b_nacionalidad;
+    private javax.swing.JRadioButton b_peliculas;
+    private javax.swing.JRadioButton b_titulo;
+    private javax.swing.JRadioButton bn_nombre;
+    private javax.swing.JComboBox buscar_nombre;
     private javax.swing.JComboBox cb_AgregarNuevaRelacionActor2;
     private javax.swing.JComboBox cb_AgregarNuevoRelacionActor1;
     private javax.swing.JComboBox cb_NuevoPeliculaAActor;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -896,6 +1216,8 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -917,26 +1239,22 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JDialog jd_AgregarNuevaPelicula;
     private javax.swing.JDialog jd_AgregarNuevoActor;
+    private javax.swing.JTextField m_año;
+    private javax.swing.JSpinner m_edad;
+    private javax.swing.JTextField m_estudio;
+    private javax.swing.JTextField m_nacionalidad;
+    private javax.swing.JTextField m_nombre;
+    private javax.swing.JComboBox m_pelicula;
+    private javax.swing.JTextField m_titulo;
+    private javax.swing.ButtonGroup pelicula;
     private javax.swing.JSpinner sp_NuevoEdadActor;
     private javax.swing.JTextField tf_AgregarNuevoPeliculaAñoDeExhibicion;
     private javax.swing.JTextField tf_AgregarNuevoPeliculaEstudio;
@@ -948,4 +1266,8 @@ ArrayList<Pelicula> peliculas;
 ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
 ArrayList<Actor> actores = new ArrayList();
 UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode,MyLink>();
+DefaultComboBoxModel b_nombre;
+DefaultComboBoxModel b_p;
+String validar_nombre;
+String validar_pelicula;
 }
