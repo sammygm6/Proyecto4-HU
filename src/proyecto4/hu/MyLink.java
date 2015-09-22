@@ -51,7 +51,7 @@ public class MyLink {
 
     @Override
     public String toString() {
-        return "E "+id;
+        return relacion;
     }
     
     

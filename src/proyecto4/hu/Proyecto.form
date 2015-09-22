@@ -571,9 +571,9 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDialog" name="Agregar_relacion">
+    <Container class="javax.swing.JDialog" name="jd_AgregarNuevaRelacion">
       <Events>
-        <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="Agregar_relacionWindowActivated"/>
+        <EventHandler event="windowActivated" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jd_AgregarNuevaRelacionWindowActivated"/>
       </Events>
 
       <Layout>
@@ -731,11 +731,12 @@
             <Component class="javax.swing.JComboBox" name="cb_NuevaRelacionRelacion">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="Amistad"/>
                     <StringItem index="1" value="Familia"/>
                     <StringItem index="2" value="Noviazgo"/>
                     <StringItem index="3" value="Matrimonio"/>
+                    <StringItem index="4" value="Sexo"/>
                   </StringArray>
                 </Property>
               </Properties>

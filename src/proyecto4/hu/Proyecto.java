@@ -12,6 +12,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -40,7 +41,7 @@ public class Proyecto extends javax.swing.JFrame {
                 = new BasicVisualizationServer<Integer, String>(layout);
         vv.setPreferredSize(new Dimension(350, 350)); //Sets the viewing area size
 
-        JFrame frame = new JFrame("Simple Graph View");
+        frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(vv);
         frame.pack();
@@ -98,7 +99,7 @@ public class Proyecto extends javax.swing.JFrame {
         buscar_nombre = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
         m_nombre = new javax.swing.JTextField();
-        Agregar_relacion = new javax.swing.JDialog();
+        jd_AgregarNuevaRelacion = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -512,9 +513,9 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        Agregar_relacion.addWindowListener(new java.awt.event.WindowAdapter() {
+        jd_AgregarNuevaRelacion.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
-                Agregar_relacionWindowActivated(evt);
+                jd_AgregarNuevaRelacionWindowActivated(evt);
             }
         });
 
@@ -540,7 +541,7 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setText("Tiene una relacion de");
 
-        cb_NuevaRelacionRelacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amistad", "Familia", "Noviazgo", "Matrimonio" }));
+        cb_NuevaRelacionRelacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amistad", "Familia", "Noviazgo", "Matrimonio", "Sexo" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -595,18 +596,18 @@ public class Proyecto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout Agregar_relacionLayout = new javax.swing.GroupLayout(Agregar_relacion.getContentPane());
-        Agregar_relacion.getContentPane().setLayout(Agregar_relacionLayout);
-        Agregar_relacionLayout.setHorizontalGroup(
-            Agregar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jd_AgregarNuevaRelacionLayout = new javax.swing.GroupLayout(jd_AgregarNuevaRelacion.getContentPane());
+        jd_AgregarNuevaRelacion.getContentPane().setLayout(jd_AgregarNuevaRelacionLayout);
+        jd_AgregarNuevaRelacionLayout.setHorizontalGroup(
+            jd_AgregarNuevaRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 546, Short.MAX_VALUE)
-            .addGroup(Agregar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AgregarNuevaRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        Agregar_relacionLayout.setVerticalGroup(
-            Agregar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jd_AgregarNuevaRelacionLayout.setVerticalGroup(
+            jd_AgregarNuevaRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 296, Short.MAX_VALUE)
-            .addGroup(Agregar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AgregarNuevaRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1043,10 +1044,10 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAbrirVentanaNuevoActorActionPerformed
 
     private void BotonAbrirVentanaAgregarRelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaAgregarRelacionActionPerformed
-        Agregar_relacion.setModal(true);
-        Agregar_relacion.pack();
-        Agregar_relacion.setLocationRelativeTo(null);
-        Agregar_relacion.setVisible(true);
+        jd_AgregarNuevaRelacion.setModal(true);
+        jd_AgregarNuevaRelacion.pack();
+        jd_AgregarNuevaRelacion.setLocationRelativeTo(null);
+        jd_AgregarNuevaRelacion.setVisible(true);
     }//GEN-LAST:event_BotonAbrirVentanaAgregarRelacionActionPerformed
 
     private void BotonAbrirVentanaEliminarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaEliminarActorActionPerformed
@@ -1119,6 +1120,20 @@ public class Proyecto extends javax.swing.JFrame {
             MyNode Nodo1 = new MyNode(getFromList(NombreActor1));
             MyNode Nodo2 = new MyNode(getFromList(NombreActor2));
             this.RELACIONES.addEdge(new MyLink(relacion), Nodo1, Nodo2, EdgeType.UNDIRECTED);
+            Layout<Integer, String> layout = new CircleLayout(RELACIONES);
+            layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
+            // The BasicVisualizationServer<V,E> is parameterized by the edge types
+            BasicVisualizationServer<Integer, String> vv
+                    = new BasicVisualizationServer<Integer, String>(layout);
+            vv.setPreferredSize(new Dimension(350, 350)); //Sets the viewing area size
+            vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+            vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+            frame.setVisible(false);
+            frame = new JFrame("Simple Graph View");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add(vv);
+            frame.pack();
+            frame.setVisible(true);
         }
 
         //Terminarlo cuando se agregen las relaciones
@@ -1374,13 +1389,13 @@ public class Proyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ver_ultimoMouseClicked
 
-    private void Agregar_relacionWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Agregar_relacionWindowActivated
+    private void jd_AgregarNuevaRelacionWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_AgregarNuevaRelacionWindowActivated
         // TODO add your handling code here:
         for (int i = 0; i < this.actores.size(); i++) {
             this.cb_AgregarNuevoRelacionActor1.addItem(actores.get(i).getNombre());
             this.cb_AgregarNuevaRelacionActor2.addItem(actores.get(i).getNombre());
         }
-    }//GEN-LAST:event_Agregar_relacionWindowActivated
+    }//GEN-LAST:event_jd_AgregarNuevaRelacionWindowActivated
     private boolean isInList(String nombre) {
         for (int i = 0; i < this.actores.size(); i++) {
             if (actores.get(i).getNombre().equals(nombre)) {
@@ -1436,7 +1451,6 @@ public class Proyecto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarNuevaPeliculaAActor;
-    private javax.swing.JDialog Agregar_relacion;
     private javax.swing.JMenuItem BotonAbrirVentanaAgregarRelacion;
     private javax.swing.JMenuItem BotonAbrirVentanaEliminarActor;
     private javax.swing.JMenuItem BotonAbrirVentanaHistorial;
@@ -1524,6 +1538,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JDialog jd_AgregarNuevaPelicula;
+    private javax.swing.JDialog jd_AgregarNuevaRelacion;
     private javax.swing.JDialog jd_AgregarNuevoActor;
     private javax.swing.JTextField m_año;
     private javax.swing.JSpinner m_edad;
@@ -1552,4 +1567,5 @@ ArrayList<Pelicula> peliculas;
     String validar_nombre;
     String validar_pelicula;
     String reporte;
+    JFrame frame;
 }

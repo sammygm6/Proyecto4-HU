@@ -48,7 +48,7 @@ public class MyNode {
 
     @Override
     public String toString() {
-        return "V"+id;
+        return actor.getNombre();
     }
     
     
