@@ -17,7 +17,10 @@ public class MyNode {
 
     public MyNode() {
     }
-
+    public MyNode(Actor actor){
+        this.actor = actor;
+    }
+    
     public MyNode(int id) {
         this.id = id;
     }

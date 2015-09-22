@@ -11,7 +11,7 @@ package proyecto4.hu;
  * @author User
  */
 public class MyLink {
-    private double capacidad;
+    private String relacion;
     private double peso;
     private int id;
     private int edgeCount=0;
@@ -19,18 +19,18 @@ public class MyLink {
     public MyLink() {
     }
 
-    public MyLink(double capacidad, double peso) {
+    public MyLink(String relacion) {
         this.id = edgeCount++;
-        this.peso = peso;
-        this.capacidad = capacidad;
+        this.peso = 1;
+        this.relacion = relacion;
     }
 
-    public double getCapacidad() {
-        return capacidad;
+    public String getRelacion() {
+        return relacion;
     }
 
-    public void setCapacidad(double capacidad) {
-        this.capacidad = capacidad;
+    public void setRelacion(String relacion) {
+        this.relacion = relacion;
     }
 
     public double getPeso() {

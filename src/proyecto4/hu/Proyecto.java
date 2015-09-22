@@ -5,10 +5,18 @@
  */
 package proyecto4.hu;
 
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
+import edu.uci.ics.jung.graph.util.EdgeType;
+import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +30,21 @@ public class Proyecto extends javax.swing.JFrame {
      */
     public Proyecto() {
         initComponents();
-        setLocationRelativeTo(null);  
+        setLocationRelativeTo(null);
+        //SimpleGraphView2 sgv = new SimpleGraphView2(); //We create our graph in here
+        // The Layout<V, E> is parameterized by the vertex and edge types
+        Layout<Integer, String> layout = new CircleLayout(RELACIONES);
+        layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
+        // The BasicVisualizationServer<V,E> is parameterized by the edge types
+        BasicVisualizationServer<Integer, String> vv
+                = new BasicVisualizationServer<Integer, String>(layout);
+        vv.setPreferredSize(new Dimension(350, 350)); //Sets the viewing area size
+
+        JFrame frame = new JFrame("Simple Graph View");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(vv);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     /**
@@ -85,10 +107,7 @@ public class Proyecto extends javax.swing.JFrame {
         BotonAgregarNuevaRelacion = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
+        cb_NuevaRelacionRelacion = new javax.swing.JComboBox();
         Eliminar = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -136,13 +155,13 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        BotonAbrirVentanaNuevoActor = new javax.swing.JMenuItem();
+        BotonAbrirVentanaAgregarRelacion = new javax.swing.JMenuItem();
+        BotonAbrirVentanaNuevaPelicula = new javax.swing.JMenuItem();
+        BotonAbrirVentanaModificarActor = new javax.swing.JMenuItem();
+        BotonAbrirVentanaModificarRelacion = new javax.swing.JMenuItem();
+        BotonAbrirVentanaEliminarActor = new javax.swing.JMenuItem();
+        BotonAbrirVentanaHistorial = new javax.swing.JMenuItem();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -493,6 +512,12 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        Agregar_relacion.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                Agregar_relacionWindowActivated(evt);
+            }
+        });
+
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 35)); // NOI18N
@@ -515,13 +540,7 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setText("Tiene una relacion de");
 
-        jRadioButton5.setText("Amistad");
-
-        jRadioButton6.setText("Familia");
-
-        jRadioButton7.setText("Noviazgo");
-
-        jRadioButton8.setText("Matrimonio");
+        cb_NuevaRelacionRelacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amistad", "Familia", "Noviazgo", "Matrimonio" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -550,15 +569,9 @@ public class Proyecto extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton6)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cb_NuevaRelacionRelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,17 +581,14 @@ public class Proyecto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_AgregarNuevoRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
+                    .addComponent(cb_NuevaRelacionRelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton8)
-                    .addComponent(jLabel15))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_AgregarNuevaRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(36, 36, 36)
                 .addComponent(BotonAgregarNuevaRelacion)
@@ -951,61 +961,61 @@ public class Proyecto extends javax.swing.JFrame {
 
         jMenu1.setText("Opciones");
 
-        jMenuItem2.setText("Agregar Actor");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaNuevoActor.setText("Agregar Actor");
+        BotonAbrirVentanaNuevoActor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                BotonAbrirVentanaNuevoActorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(BotonAbrirVentanaNuevoActor);
 
-        jMenuItem4.setText("Agregar Relacion");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaAgregarRelacion.setText("Agregar Relacion");
+        BotonAbrirVentanaAgregarRelacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                BotonAbrirVentanaAgregarRelacionActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(BotonAbrirVentanaAgregarRelacion);
 
-        jMenuItem5.setText("Agregar Pelicula");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaNuevaPelicula.setText("Agregar Pelicula");
+        BotonAbrirVentanaNuevaPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                BotonAbrirVentanaNuevaPeliculaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(BotonAbrirVentanaNuevaPelicula);
 
-        jMenuItem3.setText("Modificar Actor");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaModificarActor.setText("Modificar Actor");
+        BotonAbrirVentanaModificarActor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                BotonAbrirVentanaModificarActorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(BotonAbrirVentanaModificarActor);
 
-        jMenuItem6.setText("Modificar Relacion");
-        jMenuItem6.addItemListener(new java.awt.event.ItemListener() {
+        BotonAbrirVentanaModificarRelacion.setText("Modificar Relacion");
+        BotonAbrirVentanaModificarRelacion.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jMenuItem6ItemStateChanged(evt);
+                BotonAbrirVentanaModificarRelacionItemStateChanged(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu1.add(BotonAbrirVentanaModificarRelacion);
 
-        jMenuItem1.setText("Eliminar Actor");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaEliminarActor.setText("Eliminar Actor");
+        BotonAbrirVentanaEliminarActor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                BotonAbrirVentanaEliminarActorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(BotonAbrirVentanaEliminarActor);
 
-        jMenuItem7.setText("Historial");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        BotonAbrirVentanaHistorial.setText("Historial");
+        BotonAbrirVentanaHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                BotonAbrirVentanaHistorialActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem7);
+        jMenu1.add(BotonAbrirVentanaHistorial);
 
         jMenuBar1.add(jMenu1);
 
@@ -1025,50 +1035,52 @@ public class Proyecto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void BotonAbrirVentanaNuevoActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaNuevoActorActionPerformed
         jd_AgregarNuevoActor.setModal(true);
         jd_AgregarNuevoActor.pack();
         jd_AgregarNuevoActor.setLocationRelativeTo(null);
         jd_AgregarNuevoActor.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_BotonAbrirVentanaNuevoActorActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       Agregar_relacion.setModal(true);
-       Agregar_relacion.pack();
-       Agregar_relacion.setLocationRelativeTo(null);
-       Agregar_relacion.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void BotonAbrirVentanaAgregarRelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaAgregarRelacionActionPerformed
+        Agregar_relacion.setModal(true);
+        Agregar_relacion.pack();
+        Agregar_relacion.setLocationRelativeTo(null);
+        Agregar_relacion.setVisible(true);
+    }//GEN-LAST:event_BotonAbrirVentanaAgregarRelacionActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       Eliminar.setModal(true);
-       Eliminar.pack();
-       Eliminar.setLocationRelativeTo(null);
-       Eliminar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void BotonAbrirVentanaEliminarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaEliminarActorActionPerformed
+        Eliminar.setModal(true);
+        Eliminar.pack();
+        Eliminar.setLocationRelativeTo(null);
+        Eliminar.setVisible(true);
+    }//GEN-LAST:event_BotonAbrirVentanaEliminarActorActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       jd_AgregarNuevaPelicula.setModal(true);
-       jd_AgregarNuevaPelicula.pack();
-       jd_AgregarNuevaPelicula.setLocationRelativeTo(null);
-       jd_AgregarNuevaPelicula.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void BotonAbrirVentanaNuevaPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaNuevaPeliculaActionPerformed
+        jd_AgregarNuevaPelicula.setModal(true);
+        jd_AgregarNuevaPelicula.pack();
+        jd_AgregarNuevaPelicula.setLocationRelativeTo(null);
+        jd_AgregarNuevaPelicula.setVisible(true);
+    }//GEN-LAST:event_BotonAbrirVentanaNuevaPeliculaActionPerformed
 
     private void BotonAgregarNuevoActorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAgregarNuevoActorMouseClicked
         // Evento Agregar nuevo actor
         String nombre = this.tf_NuevoNombreActor.getText();
         String edad = this.sp_NuevoEdadActor.getValue().toString();
         String nacionalidad = this.tf_NuevoActorNacionalidad.getText();
-        Actor NuevoActor = new Actor(nombre,edad,nacionalidad,this.peliculas_agregar_a_nuevo_actor);
+        Actor NuevoActor = new Actor(nombre, edad, nacionalidad, this.peliculas_agregar_a_nuevo_actor);
         actores.add(NuevoActor);
         this.peliculas_agregar_a_nuevo_actor = new ArrayList();
         JOptionPane.showMessageDialog(this, "Agrego un nuevo actor exitosamente");
         this.jd_AgregarNuevoActor.setVisible(false);
-        
-        b_nombre.addElement(nombre);
-        buscar_nombre.setModel(b_nombre);
-        
+        this.jd_AgregarNuevoActor.setModal(false);
+        this.tf_NuevoNombreActor.setText("");
+        this.sp_NuevoEdadActor.setValue(0);
+        this.tf_NuevoActorNacionalidad.setText("");
+        //b_nombre.addElement(nombre);
+        //buscar_nombre.setModel(b_nombre);
         reporte = "Se agrego un nuevo actor " + nombre;
-       pila.push(reporte);
+        pila.push(reporte);
     }//GEN-LAST:event_BotonAgregarNuevoActorMouseClicked
 
     private void AgregarNuevaPeliculaAActorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarNuevaPeliculaAActorMouseClicked
@@ -1086,10 +1098,10 @@ public class Proyecto extends javax.swing.JFrame {
         String titulo = this.tf_AgregarNuevoPeliculaTitulo.getText();
         String año = this.tf_AgregarNuevoPeliculaAñoDeExhibicion.getText();
         String estudio = this.tf_AgregarNuevoPeliculaEstudio.getText();
-        Pelicula NuevaPelicula = new Pelicula(titulo,año,estudio);
+        Pelicula NuevaPelicula = new Pelicula(titulo, año, estudio);
         peliculas.add(NuevaPelicula);
         this.jd_AgregarNuevaPelicula.setVisible(false);
-        
+
         reporte = "Se agrego una nueva pelicula: " + titulo;
         pila.push(reporte);
     }//GEN-LAST:event_BotonAgregarNuevaPeliculaMouseClicked
@@ -1098,23 +1110,31 @@ public class Proyecto extends javax.swing.JFrame {
         // evento para agregar una nueva relacion
         String NombreActor1 = this.cb_AgregarNuevoRelacionActor1.getSelectedItem().toString();
         String NombreActor2 = this.cb_AgregarNuevaRelacionActor2.getSelectedItem().toString();
+        String relacion = this.cb_NuevaRelacionRelacion.getSelectedItem().toString();
         if (!(isInList(NombreActor1) || !(isInList(NombreActor2)))) {
             this.cb_AgregarNuevoRelacionActor1.setSelectedIndex(0);
             this.cb_AgregarNuevaRelacionActor2.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "No se encontro alguno de los actores");
-        }else{
-            
-            MyNode Nodo1 = new MyNode();
-            MyNode Nodo2 = new MyNode();
+        } else {
+            MyNode Nodo1 = new MyNode(getFromList(NombreActor1));
+            MyNode Nodo2 = new MyNode(getFromList(NombreActor2));
+            this.RELACIONES.addEdge(new MyLink(relacion), Nodo1, Nodo2, EdgeType.UNDIRECTED);
         }
-        
+
         //Terminarlo cuando se agregen las relaciones
 //        reporte = "Se agrego una nueva relacion: El actor " + NombreActor1 +
 //                    " tiene una relacion falta especificar aqui " + NombreActor2;
 //        pila.push(reporte);
     }//GEN-LAST:event_BotonAgregarNuevaRelacionMouseClicked
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    public Actor getFromList(String nombre) {
+        for (int i = 0; i < this.actores.size(); i++) {
+            if (actores.get(i).getNombre().equals(nombre)) {
+                return actores.get(i);
+            }
+        }
+        return null;
+    }
+    private void BotonAbrirVentanaModificarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaModificarActorActionPerformed
         m_edad.setEnabled(false);
         m_nacionalidad.setEnabled(false);
         m_nombre.setEnabled(false);
@@ -1122,26 +1142,26 @@ public class Proyecto extends javax.swing.JFrame {
         m_titulo.setEnabled(false);
         m_año.setEnabled(false);
         m_estudio.setEnabled(false);
-        
+
         Modificar.setModal(true);
         Modificar.pack();
         Modificar.setLocationRelativeTo(null);
         Modificar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_BotonAbrirVentanaModificarActorActionPerformed
 
     private void buscar_nombreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buscar_nombreItemStateChanged
-         b_nombre = (DefaultComboBoxModel) buscar_nombre.getModel();
-         DefaultComboBoxModel pelicula;
-         
+        b_nombre = (DefaultComboBoxModel) buscar_nombre.getModel();
+        DefaultComboBoxModel pelicula;
+
         String tem = (String) b_nombre.getSelectedItem();
         validar_nombre = tem;
         if (evt.getStateChange() == 1) {
-            for (Actor temp :  actores) {
+            for (Actor temp : actores) {
                 if (tem.equalsIgnoreCase(temp.getNombre())) {
                     m_edad.setValue(temp.getEdad());
                     m_nacionalidad.setText(temp.getNacionalidad());
                     m_nombre.setText(temp.getNombre());
-                    
+
                     pelicula = (DefaultComboBoxModel) m_pelicula.getModel();
                     for (int i = 0; i < temp.getLista_peliculas().size(); i++) {
                         if (temp.getNombre().equalsIgnoreCase(tem)) {
@@ -1152,13 +1172,12 @@ public class Proyecto extends javax.swing.JFrame {
                 }
             }
         }
-         
-         
-         
+
+
     }//GEN-LAST:event_buscar_nombreItemStateChanged
 
     private void b_edadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_edadItemStateChanged
-        if(b_edad.isSelected()){
+        if (b_edad.isSelected()) {
             m_edad.setEnabled(true);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(false);
@@ -1170,7 +1189,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_b_edadItemStateChanged
 
     private void b_nacionalidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_nacionalidadItemStateChanged
-        if(b_nacionalidad.isSelected()){
+        if (b_nacionalidad.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(true);
             m_nombre.setEnabled(false);
@@ -1182,7 +1201,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_b_nacionalidadItemStateChanged
 
     private void b_peliculasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_peliculasItemStateChanged
-        if(b_peliculas.isSelected()){
+        if (b_peliculas.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(false);
@@ -1194,7 +1213,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_b_peliculasItemStateChanged
 
     private void bn_nombreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_bn_nombreItemStateChanged
-        if(bn_nombre.isSelected()){
+        if (bn_nombre.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(true);
@@ -1207,10 +1226,10 @@ public class Proyecto extends javax.swing.JFrame {
 
     private void m_peliculaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_m_peliculaItemStateChanged
         b_p = (DefaultComboBoxModel) m_pelicula.getModel();
-        
+
         String tem = (String) m_pelicula.getSelectedItem();
         validar_pelicula = tem;
-        
+
         if (evt.getStateChange() == 1) {
             for (Pelicula temp2 : peliculas) {
                 if (tem.equalsIgnoreCase(temp2.getTitulo())) {
@@ -1223,7 +1242,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_m_peliculaItemStateChanged
 
     private void b_tituloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_tituloItemStateChanged
-        if(b_titulo.isSelected()){
+        if (b_titulo.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(false);
@@ -1235,7 +1254,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_b_tituloItemStateChanged
 
     private void b_añoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_añoItemStateChanged
-        if(b_año.isSelected()){
+        if (b_año.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(false);
@@ -1247,7 +1266,7 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_b_añoItemStateChanged
 
     private void b_estudioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_b_estudioItemStateChanged
-        if(b_estudio.isSelected()){
+        if (b_estudio.isSelected()) {
             m_edad.setEnabled(false);
             m_nacionalidad.setEnabled(false);
             m_nombre.setEnabled(false);
@@ -1266,7 +1285,7 @@ public class Proyecto extends javax.swing.JFrame {
                     actores.get(i).setEdad(m_edad.getValue().toString());
                     reporte = "Al actor " + validar_nombre + " Se le modifico la edad";
                     pila.push(reporte);
-                    
+
                 } else if (m_nacionalidad.isEnabled()) {
                     actores.get(i).setNacionalidad(m_nacionalidad.getText());
                     reporte = "Al actor " + validar_nombre + " Se le modifico la nacialidad";
@@ -1276,19 +1295,19 @@ public class Proyecto extends javax.swing.JFrame {
                     actores.get(i).setNombre(m_nombre.getText());
                     reporte = "Al actor " + validar_nombre + " Se le modifico el nombre";
                     pila.push(reporte);
-                    
+
                 } else {
                     if (actores.get(i).getLista_peliculas().get(i).getTitulo().equalsIgnoreCase(validar_pelicula)) {
                         if (m_titulo.isEnabled()) {
                             actores.get(i).getLista_peliculas().get(i).setTitulo(m_titulo.getText());
                             reporte = "A la pelicula " + validar_pelicula + " se le modifico el titulo";
                             pila.push(reporte);
-                            
+
                         } else if (m_año.isEnabled()) {
                             actores.get(i).getLista_peliculas().get(i).setAño(m_año.getText());
                             reporte = "A la pelicula " + validar_pelicula + " se le modifico el año que fue realizada";
                             pila.push(reporte);
-                    
+
                         } else if (m_estudio.isEnabled()) {
                             actores.get(i).getLista_peliculas().get(i).setEstudio(m_estudio.getText());
                             reporte = "A la pelicula " + validar_pelicula + " se le modifico el estudio donde fue realizada";
@@ -1296,8 +1315,8 @@ public class Proyecto extends javax.swing.JFrame {
                         }
 
                     }
-                    
-                    for(int j = 0; j < peliculas.size(); j++){
+
+                    for (int j = 0; j < peliculas.size(); j++) {
                         if (validar_pelicula.equalsIgnoreCase(peliculas.get(i).getTitulo())) {
                             if (m_titulo.isEnabled()) {
                                 peliculas.get(j).setTitulo(m_titulo.getText());
@@ -1311,7 +1330,7 @@ public class Proyecto extends javax.swing.JFrame {
                 }
             }
         }
-       JOptionPane.showMessageDialog(this, "El actor fue modificado correctamente");  
+        JOptionPane.showMessageDialog(this, "El actor fue modificado correctamente");
         m_edad.setEnabled(false);
 //        m_edad.setValue("");
         m_nacionalidad.setEnabled(false);
@@ -1327,7 +1346,7 @@ public class Proyecto extends javax.swing.JFrame {
         m_estudio.setEnabled(false);
         m_estudio.setText("");
         Modificar.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -1335,26 +1354,34 @@ public class Proyecto extends javax.swing.JFrame {
 //         pila.push(reporte);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jMenuItem6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jMenuItem6ItemStateChanged
-       Modificar_relacion.setModal(true);
-       Modificar_relacion.pack();
-       Modificar_relacion.setLocationRelativeTo(null);
-       Modificar_relacion.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ItemStateChanged
+    private void BotonAbrirVentanaModificarRelacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaModificarRelacionItemStateChanged
+        Modificar_relacion.setModal(true);
+        Modificar_relacion.pack();
+        Modificar_relacion.setLocationRelativeTo(null);
+        Modificar_relacion.setVisible(true);
+    }//GEN-LAST:event_BotonAbrirVentanaModificarRelacionItemStateChanged
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void BotonAbrirVentanaHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaHistorialActionPerformed
         ver_ultimo.setText(pila.pop());
-        
+
         Historial.setModal(true);
         Historial.pack();
         Historial.setLocationRelativeTo(null);
         Historial.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_BotonAbrirVentanaHistorialActionPerformed
 
     private void ver_ultimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ver_ultimoMouseClicked
-      
+
     }//GEN-LAST:event_ver_ultimoMouseClicked
-    private boolean isInList(String nombre){
+
+    private void Agregar_relacionWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Agregar_relacionWindowActivated
+        // TODO add your handling code here:
+        for (int i = 0; i < this.actores.size(); i++) {
+            this.cb_AgregarNuevoRelacionActor1.addItem(actores.get(i).getNombre());
+            this.cb_AgregarNuevaRelacionActor2.addItem(actores.get(i).getNombre());
+        }
+    }//GEN-LAST:event_Agregar_relacionWindowActivated
+    private boolean isInList(String nombre) {
         for (int i = 0; i < this.actores.size(); i++) {
             if (actores.get(i).getNombre().equals(nombre)) {
                 return true;
@@ -1362,7 +1389,8 @@ public class Proyecto extends javax.swing.JFrame {
         }
         return false;
     }
-    private Actor getActor(String nombreActor){
+
+    private Actor getActor(String nombreActor) {
         for (int i = 0; i < this.actores.size(); i++) {
             if (actores.get(i).getNombre().equals(nombreActor)) {
                 return actores.get(i);
@@ -1370,6 +1398,7 @@ public class Proyecto extends javax.swing.JFrame {
         }
         return null;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -1381,7 +1410,7 @@ public class Proyecto extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -1408,6 +1437,13 @@ public class Proyecto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarNuevaPeliculaAActor;
     private javax.swing.JDialog Agregar_relacion;
+    private javax.swing.JMenuItem BotonAbrirVentanaAgregarRelacion;
+    private javax.swing.JMenuItem BotonAbrirVentanaEliminarActor;
+    private javax.swing.JMenuItem BotonAbrirVentanaHistorial;
+    private javax.swing.JMenuItem BotonAbrirVentanaModificarActor;
+    private javax.swing.JMenuItem BotonAbrirVentanaModificarRelacion;
+    private javax.swing.JMenuItem BotonAbrirVentanaNuevaPelicula;
+    private javax.swing.JMenuItem BotonAbrirVentanaNuevoActor;
     private javax.swing.JButton BotonAgregarNuevaPelicula;
     private javax.swing.JButton BotonAgregarNuevaRelacion;
     private javax.swing.JButton BotonAgregarNuevoActor;
@@ -1426,6 +1462,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JComboBox buscar_nombre;
     private javax.swing.JComboBox cb_AgregarNuevaRelacionActor2;
     private javax.swing.JComboBox cb_AgregarNuevoRelacionActor1;
+    private javax.swing.JComboBox cb_NuevaRelacionRelacion;
     private javax.swing.JComboBox cb_NuevoPeliculaAActor;
     private javax.swing.JMenuItem eliminar_dato;
     private javax.swing.JButton jButton1;
@@ -1472,13 +1509,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1490,10 +1520,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField8;
@@ -1517,13 +1543,13 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JTextArea ver_ultimo;
     // End of variables declaration//GEN-END:variables
 ArrayList<Pelicula> peliculas;
-ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
-ArrayList<Actor> actores = new ArrayList();
-UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode,MyLink>();
-Stack<String> pila = new Stack<>();
-DefaultComboBoxModel b_nombre;
-DefaultComboBoxModel b_p;
-String validar_nombre;
-String validar_pelicula;
-String reporte;
+    ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
+    ArrayList<Actor> actores = new ArrayList();
+    UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode, MyLink>();
+    Stack<String> pila = new Stack<>();
+    DefaultComboBoxModel b_nombre;
+    DefaultComboBoxModel b_p;
+    String validar_nombre;
+    String validar_pelicula;
+    String reporte;
 }
