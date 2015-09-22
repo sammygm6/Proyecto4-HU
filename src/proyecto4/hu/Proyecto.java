@@ -113,7 +113,6 @@ public class Proyecto extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jd_AgregarNuevaPelicula = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
@@ -634,8 +633,7 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(372, 372, 372))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(216, 216, 216)
                         .addComponent(jButton4)))
@@ -647,12 +645,10 @@ public class Proyecto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel23)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout EliminarLayout = new javax.swing.GroupLayout(Eliminar.getContentPane());
@@ -1402,6 +1398,8 @@ public class Proyecto extends javax.swing.JFrame {
 
     private void jd_AgregarNuevaRelacionWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_AgregarNuevaRelacionWindowActivated
         // TODO add your handling code here:
+        this.cb_AgregarNuevoRelacionActor1.removeAllItems();
+        this.cb_AgregarNuevaRelacionActor2.removeAllItems();
         for (int i = 0; i < this.actores.size(); i++) {
             this.cb_AgregarNuevoRelacionActor1.addItem(actores.get(i).getNombre());
             this.cb_AgregarNuevaRelacionActor2.addItem(actores.get(i).getNombre());
@@ -1547,7 +1545,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JDialog jd_AgregarNuevaPelicula;
     private javax.swing.JDialog jd_AgregarNuevaRelacion;
     private javax.swing.JDialog jd_AgregarNuevoActor;
