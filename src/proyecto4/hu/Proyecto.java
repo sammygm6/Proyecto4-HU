@@ -1078,6 +1078,7 @@ public class Proyecto extends javax.swing.JFrame {
         this.tf_NuevoNombreActor.setText("");
         this.sp_NuevoEdadActor.setValue(0);
         this.tf_NuevoActorNacionalidad.setText("");
+        this.vertices.add(new MyNode(NuevoActor));
         //b_nombre.addElement(nombre);
         //buscar_nombre.setModel(b_nombre);
         reporte = "Se agrego un nuevo actor " + nombre;
@@ -1117,9 +1118,19 @@ public class Proyecto extends javax.swing.JFrame {
             this.cb_AgregarNuevaRelacionActor2.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "No se encontro alguno de los actores");
         } else {
-            MyNode Nodo1 = new MyNode(getFromList(NombreActor1));
+            int posicionNodo1 = 0;
+            int posicionNodo2 = 0;
+            for (int i = 0; i < this.vertices.size(); i++) {
+                if (vertices.get(i).getActor().getNombre().equals(NombreActor1)) {
+                    posicionNodo1 = i;
+                }
+                if (vertices.get(i).getActor().getNombre().equals(NombreActor2)) {
+                    posicionNodo2 = i;
+                }
+            }
             MyNode Nodo2 = new MyNode(getFromList(NombreActor2));
-            this.RELACIONES.addEdge(new MyLink(relacion), Nodo1, Nodo2, EdgeType.UNDIRECTED);
+            this.RELACIONES.addEdge(new MyLink(relacion), vertices.get(posicionNodo1),
+                    vertices.get(posicionNodo2), EdgeType.UNDIRECTED);
             Layout<Integer, String> layout = new CircleLayout(RELACIONES);
             layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
             // The BasicVisualizationServer<V,E> is parameterized by the edge types
@@ -1560,6 +1571,7 @@ public class Proyecto extends javax.swing.JFrame {
 ArrayList<Pelicula> peliculas;
     ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
     ArrayList<Actor> actores = new ArrayList();
+    ArrayList<MyNode> vertices = new ArrayList();
     UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode, MyLink>();
     Stack<String> pila = new Stack<>();
     DefaultComboBoxModel b_nombre;
