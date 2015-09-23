@@ -15,6 +15,8 @@ public class MyLink {
     private double peso;
     private int id;
     private int edgeCount=0;
+    private MyNode nodoanterior;
+    private MyNode nodosiguiente;
 
     public MyLink() {
     }
@@ -23,6 +25,31 @@ public class MyLink {
         this.id = edgeCount++;
         this.peso = 1;
         this.relacion = relacion;
+        
+    }
+
+    public int getEdgeCount() {
+        return edgeCount;
+    }
+
+    public void setEdgeCount(int edgeCount) {
+        this.edgeCount = edgeCount;
+    }
+
+    public MyNode getNodoanterior() {
+        return nodoanterior;
+    }
+
+    public void setNodoanterior(MyNode nodoanterior) {
+        this.nodoanterior = nodoanterior;
+    }
+
+    public MyNode getNodosiguiente() {
+        return nodosiguiente;
+    }
+
+    public void setNodosiguiente(MyNode nodosiguiente) {
+        this.nodosiguiente = nodosiguiente;
     }
 
     public String getRelacion() {

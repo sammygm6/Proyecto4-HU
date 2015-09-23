@@ -7,6 +7,7 @@ package proyecto4.hu;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.shortestpath.DijkstraShortestPath;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
@@ -15,6 +16,7 @@ import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -32,13 +34,17 @@ public class Proyecto extends javax.swing.JFrame {
     public Proyecto() {
         initComponents();
         setLocationRelativeTo(null);
+        Actor KevinBacon = new Actor("Kevin Bacon", "57", "Estados Unidos");
+        MyNode Kevin_Bacon = new MyNode(KevinBacon);
+        this.actores.add(KevinBacon);
+        this.vertices.add(Kevin_Bacon);
         //SimpleGraphView2 sgv = new SimpleGraphView2(); //We create our graph in here
         // The Layout<V, E> is parameterized by the vertex and edge types
-       Layout<Integer, String> layout = new CircleLayout(RELACIONES);
+        Layout<Integer, String> layout = new CircleLayout(Graph);
         layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
         // The BasicVisualizationServer<V,E> is parameterized by the edge types
         BasicVisualizationServer<Integer, String> vv
-                = new BasicVisualizationServer<Integer,String>(layout);
+                = new BasicVisualizationServer<Integer, String>(layout);
         vv.setPreferredSize(new Dimension(350, 350)); //Sets the viewing area size
 
         frame = new JFrame("Simple Graph View");
@@ -132,20 +138,16 @@ public class Proyecto extends javax.swing.JFrame {
         tf_AgregarNuevoPeliculaEstudio = new javax.swing.JTextField();
         BotonAgregarNuevaPelicula = new javax.swing.JButton();
         tf_AgregarNuevoPeliculaAñoDeExhibicion = new javax.swing.JTextField();
-        Modificar_relacion = new javax.swing.JDialog();
+        jd_ModificarRelacion = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        ma_relacion = new javax.swing.JComboBox();
+        cb_ModificarRelacionActor1 = new javax.swing.JComboBox();
         jLabel32 = new javax.swing.JLabel();
-        tipo_relacion = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        relacion_con = new javax.swing.JComboBox();
-        jLabel34 = new javax.swing.JLabel();
-        mr_relacion = new javax.swing.JRadioButton();
-        mr_persona = new javax.swing.JRadioButton();
-        mr_ambas = new javax.swing.JRadioButton();
+        cb_ModificarRelacionActor2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        cb_ModificarRelacion_Relacion = new javax.swing.JComboBox();
         actor = new javax.swing.ButtonGroup();
         pelicula = new javax.swing.ButtonGroup();
         Historial = new javax.swing.JDialog();
@@ -155,6 +157,12 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         ver_ultimo = new javax.swing.JTextField();
+        jd_BaconNumber = new javax.swing.JDialog();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        cb_Actor1_Bacon = new javax.swing.JComboBox();
+        cb_Actor2_Bacon = new javax.swing.JComboBox();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -167,6 +175,13 @@ public class Proyecto extends javax.swing.JFrame {
         BotonAbrirVentanaModificarRelacion = new javax.swing.JMenuItem();
         BotonAbrirVentanaEliminarActor = new javax.swing.JMenuItem();
         BotonAbrirVentanaHistorial = new javax.swing.JMenuItem();
+        BACONNUMBER = new javax.swing.JMenuItem();
+
+        jd_AgregarNuevoActor.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                CargarPeliculasVentanaNuevoActor(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -817,6 +832,12 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jd_ModificarRelacion.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                CargarRelacionesVentanaModificar(evt);
+            }
+        });
+
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel29.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 35)); // NOI18N
@@ -826,9 +847,9 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel31.setText("El actor");
 
-        ma_relacion.addItemListener(new java.awt.event.ItemListener() {
+        cb_ModificarRelacionActor1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ma_relacionItemStateChanged(evt);
+                cb_ModificarRelacionActor1ItemStateChanged(evt);
             }
         });
 
@@ -838,35 +859,14 @@ public class Proyecto extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel33.setText("Con");
 
-        jLabel34.setText("¿Qué desea modificar?");
-
-        mr_relacion.setText("Tipo de Relacion");
-        mr_relacion.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mr_relacionItemStateChanged(evt);
-            }
-        });
-
-        mr_persona.setText("Persona con quien tiene la relacion");
-        mr_persona.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mr_personaItemStateChanged(evt);
-            }
-        });
-
-        mr_ambas.setText("Ambas");
-        mr_ambas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mr_ambasItemStateChanged(evt);
-            }
-        });
-
         jButton1.setText("Modificar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                BotonModificarRelacion(evt);
             }
         });
+
+        cb_ModificarRelacion_Relacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amistad", "Famila", "Noviasgo", "Matrimonio" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -883,25 +883,19 @@ public class Proyecto extends javax.swing.JFrame {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel31)
-                                    .addComponent(jLabel34)
                                     .addComponent(jLabel33))
-                                .addGap(53, 53, 53)
+                                .addGap(99, 99, 99)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ma_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(mr_relacion)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(mr_persona)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(mr_ambas))
-                                    .addComponent(relacion_con, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cb_ModificarRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cb_ModificarRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tipo_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_ModificarRelacion_Relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65)))
                 .addContainerGap())
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(253, 253, 253)
+                .addGap(251, 251, 251)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -913,34 +907,28 @@ public class Proyecto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(ma_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(mr_relacion)
-                    .addComponent(mr_persona)
-                    .addComponent(mr_ambas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cb_ModificarRelacionActor1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel33)
-                    .addComponent(relacion_con, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(tipo_relacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(cb_ModificarRelacionActor2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb_ModificarRelacion_Relacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
-        javax.swing.GroupLayout Modificar_relacionLayout = new javax.swing.GroupLayout(Modificar_relacion.getContentPane());
-        Modificar_relacion.getContentPane().setLayout(Modificar_relacionLayout);
-        Modificar_relacionLayout.setHorizontalGroup(
-            Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jd_ModificarRelacionLayout = new javax.swing.GroupLayout(jd_ModificarRelacion.getContentPane());
+        jd_ModificarRelacion.getContentPane().setLayout(jd_ModificarRelacionLayout);
+        jd_ModificarRelacionLayout.setHorizontalGroup(
+            jd_ModificarRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        Modificar_relacionLayout.setVerticalGroup(
-            Modificar_relacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jd_ModificarRelacionLayout.setVerticalGroup(
+            jd_ModificarRelacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1018,6 +1006,61 @@ public class Proyecto extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jd_BaconNumber.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                CargarActoresVentanaBaconNumber(evt);
+            }
+        });
+
+        jLabel40.setText("Actor 1:");
+
+        jLabel41.setText("Actor 2:");
+
+        jButton5.setText("BACON NUMBER");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BACONEAR(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_BaconNumberLayout = new javax.swing.GroupLayout(jd_BaconNumber.getContentPane());
+        jd_BaconNumber.getContentPane().setLayout(jd_BaconNumberLayout);
+        jd_BaconNumberLayout.setHorizontalGroup(
+            jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_BaconNumberLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_BaconNumberLayout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addGap(89, 89, 89)
+                        .addComponent(cb_Actor1_Bacon, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_BaconNumberLayout.createSequentialGroup()
+                        .addComponent(jLabel41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_Actor2_Bacon, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(47, 47, 47))
+        );
+        jd_BaconNumberLayout.setVerticalGroup(
+            jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_BaconNumberLayout.createSequentialGroup()
+                .addGroup(jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_BaconNumberLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel40)
+                            .addComponent(cb_Actor1_Bacon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104)
+                        .addGroup(jd_BaconNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41)
+                            .addComponent(cb_Actor2_Bacon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_BaconNumberLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -1086,6 +1129,11 @@ public class Proyecto extends javax.swing.JFrame {
                 BotonAbrirVentanaModificarRelacionItemStateChanged(evt);
             }
         });
+        BotonAbrirVentanaModificarRelacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAbrirVentanaModificarRelacionActionPerformed(evt);
+            }
+        });
         jMenu1.add(BotonAbrirVentanaModificarRelacion);
 
         BotonAbrirVentanaEliminarActor.setText("Eliminar");
@@ -1103,6 +1151,14 @@ public class Proyecto extends javax.swing.JFrame {
             }
         });
         jMenu1.add(BotonAbrirVentanaHistorial);
+
+        BACONNUMBER.setText("Pseudo Bacon Number");
+        BACONNUMBER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BACONNUMBERActionPerformed(evt);
+            }
+        });
+        jMenu1.add(BACONNUMBER);
 
         jMenuBar1.add(jMenu1);
 
@@ -1162,15 +1218,14 @@ public class Proyecto extends javax.swing.JFrame {
         this.jd_AgregarNuevoActor.setVisible(false);
         this.jd_AgregarNuevoActor.setModal(false);
         this.tf_NuevoNombreActor.setText("");
-        this.sp_NuevoEdadActor.setValue(0);
+        this.sp_NuevoEdadActor.setValue(1);
         this.tf_NuevoActorNacionalidad.setText("");
         this.vertices.add(new MyNode(NuevoActor));
-        
+
 //        b_nombre.addElement(nombre);
 //        buscar_nombre.setModel(b_nombre);
-        
         m_relacion.addElement(nombre);
-        ma_relacion.setModel(m_relacion);
+        cb_ModificarRelacionActor1.setModel(m_relacion);
         reporte = "Se agrego un nuevo actor " + nombre;
         pila.push(reporte);
     }//GEN-LAST:event_BotonAgregarNuevoActorMouseClicked
@@ -1191,10 +1246,14 @@ public class Proyecto extends javax.swing.JFrame {
         String año = this.tf_AgregarNuevoPeliculaAñoDeExhibicion.getText();
         String estudio = this.tf_AgregarNuevoPeliculaEstudio.getText();
         Pelicula NuevaPelicula = new Pelicula(titulo, año, estudio);
-        
+
         b_p.addElement(titulo);
         m_pelicula.setModel(b_p);
         peliculas.add(NuevaPelicula);
+        JOptionPane.showMessageDialog(this, "Agrego pelicula exitosamente");
+        tf_AgregarNuevoPeliculaTitulo.setText("");
+        tf_AgregarNuevoPeliculaAñoDeExhibicion.setText("");
+        tf_AgregarNuevoPeliculaEstudio.setText("");
         this.jd_AgregarNuevaPelicula.setVisible(false);
 
         reporte = "Se agrego una nueva pelicula: " + titulo;
@@ -1206,25 +1265,25 @@ public class Proyecto extends javax.swing.JFrame {
         String NombreActor1 = this.cb_AgregarNuevoRelacionActor1.getSelectedItem().toString();
         String NombreActor2 = this.cb_AgregarNuevaRelacionActor2.getSelectedItem().toString();
         String relacion = this.cb_NuevaRelacionRelacion.getSelectedItem().toString();
+        MyLink Enlace = new MyLink(relacion);
         if (!(isInList(NombreActor1) || !(isInList(NombreActor2)))) {
             this.cb_AgregarNuevoRelacionActor1.setSelectedIndex(0);
             this.cb_AgregarNuevaRelacionActor2.setSelectedIndex(0);
             JOptionPane.showMessageDialog(this, "No se encontro alguno de los actores");
         } else {
-            int posicionNodo1 = 0;
-            int posicionNodo2 = 0;
             for (int i = 0; i < this.vertices.size(); i++) {
                 if (vertices.get(i).getActor().getNombre().equals(NombreActor1)) {
-                    posicionNodo1 = i;
+                    Enlace.setNodoanterior(vertices.get(i));
                 }
                 if (vertices.get(i).getActor().getNombre().equals(NombreActor2)) {
-                    posicionNodo2 = i;
+                    Enlace.setNodosiguiente(vertices.get(i));
                 }
             }
+            this.relaciones.add(Enlace);
             MyNode Nodo2 = new MyNode(getFromList(NombreActor2));
-            this.RELACIONES.addEdge(new MyLink(relacion), vertices.get(posicionNodo1),
-                    vertices.get(posicionNodo2), EdgeType.UNDIRECTED);
-            Layout<Integer, String> layout = new CircleLayout(RELACIONES);
+            this.Graph.addEdge(Enlace, Enlace.getNodoanterior(),
+                    Enlace.getNodosiguiente(), EdgeType.UNDIRECTED);
+            Layout<Integer, String> layout = new CircleLayout(Graph);
             layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
             // The BasicVisualizationServer<V,E> is parameterized by the edge types
             BasicVisualizationServer<Integer, String> vv
@@ -1468,33 +1527,63 @@ public class Proyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton3MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void BotonModificarRelacion(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonModificarRelacion
 //         reporte = "Al actor se le modifico la relacion";
 //         pila.push(reporte);
-        
-        mr_relacion.setText("");
-    }//GEN-LAST:event_jButton1MouseClicked
+        String nombreActor1 = this.cb_ModificarRelacionActor1.getSelectedItem().toString();
+        String nombreActor2 = this.cb_ModificarRelacionActor2.getSelectedItem().toString();
+        for (int i = 0; i < relaciones.size(); i++) {
+            String nombreIzquierdo = relaciones.get(i).getNodoanterior().getActor().getNombre();
+            String nombreDerecho = relaciones.get(i).getNodosiguiente().getActor().getNombre();
+            if (nombreIzquierdo.equals(nombreActor1) && nombreDerecho.equals(nombreActor2)) {
+                relaciones.get(i).setRelacion(this.cb_ModificarRelacion_Relacion.getSelectedItem().toString());
+                JOptionPane.showMessageDialog(this, "Modifico la relacion");
+                break;
+            }
+        }
+        this.jd_ModificarRelacion.setVisible(false);
+        Graph = new UndirectedSparseGraph<MyNode,MyLink>();
+        System.out.println("1\n"+Graph.getEdges().toString());
+        for (int i = 0; i < relaciones.size(); i++) {
+            Graph.addEdge(relaciones.get(i), relaciones.get(i).getNodoanterior(),
+                    relaciones.get(i).getNodosiguiente(), EdgeType.UNDIRECTED);
+        }
+        System.out.println("2\n"+Graph.getEdges().toString());
+        Layout<Integer, String> layout = new CircleLayout(Graph);
+        layout.setSize(new Dimension(300, 300)); // sets the initial size of the space
+        BasicVisualizationServer<Integer, String> vv
+                = new BasicVisualizationServer<Integer, String>(layout);
+        vv.setPreferredSize(new Dimension(350, 350)); //Sets the viewing area size
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+        frame.setVisible(false);
+        frame = new JFrame("Simple Graph View");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(vv);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_BotonModificarRelacion
 
     private void BotonAbrirVentanaModificarRelacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaModificarRelacionItemStateChanged
-        Modificar_relacion.setModal(true);
-        Modificar_relacion.pack();
-        Modificar_relacion.setLocationRelativeTo(null);
-        Modificar_relacion.setVisible(true);
+        jd_ModificarRelacion.setModal(true);
+        jd_ModificarRelacion.pack();
+        jd_ModificarRelacion.setLocationRelativeTo(null);
+        jd_ModificarRelacion.setVisible(true);
     }//GEN-LAST:event_BotonAbrirVentanaModificarRelacionItemStateChanged
 
     private void BotonAbrirVentanaHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaHistorialActionPerformed
-       relacion_con.setEnabled(false);
-       tipo_relacion.setEnabled(false);
-        
+        cb_ModificarRelacionActor2.setEnabled(false);
+        //tipo_relacion.setEnabled(false);
+
         Historial.setModal(true);
         Historial.pack();
         Historial.setLocationRelativeTo(null);
         Historial.setVisible(true);
-        
-        if(!pila.isEmpty()){        
+
+        if (!pila.isEmpty()) {
             ver_ultimo.setText(pila.pop());
-        }else{
-           JOptionPane.showMessageDialog(this, "No se han hecho actividades"); 
+        } else {
+            JOptionPane.showMessageDialog(this, "No se han hecho actividades");
         }
     }//GEN-LAST:event_BotonAbrirVentanaHistorialActionPerformed
 
@@ -1509,14 +1598,14 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_jd_AgregarNuevaRelacionWindowActivated
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-         if(!pila.isEmpty()){  
-             pila.remove(pila.pop());
-             ver_ultimo.setText(pila.pop());
+        if (!pila.isEmpty()) {
+            pila.remove(pila.pop());
+            ver_ultimo.setText(pila.pop());
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void ma_relacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ma_relacionItemStateChanged
-         a_relacion = (DefaultComboBoxModel) ma_relacion.getModel();
+    private void cb_ModificarRelacionActor1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ModificarRelacionActor1ItemStateChanged
+        a_relacion = (DefaultComboBoxModel) cb_ModificarRelacionActor1.getModel();
 //        DefaultComboBoxModel pelicula;
 
         String tem = (String) a_relacion.getSelectedItem();
@@ -1524,7 +1613,7 @@ public class Proyecto extends javax.swing.JFrame {
         if (evt.getStateChange() == 1) {
             for (Actor temp : actores) {
                 if (tem.equalsIgnoreCase(temp.getNombre())) {
-                    m_edad.setValue(temp.getEdad());
+//                    m_edad.setValue(temp.getEdad());
                     m_nacionalidad.setText(temp.getNacionalidad());
                     m_nombre.setText(temp.getNombre());
 
@@ -1539,45 +1628,24 @@ public class Proyecto extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_ma_relacionItemStateChanged
-
-    private void mr_relacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mr_relacionItemStateChanged
-        if(mr_relacion.isSelected()){
-            relacion_con.setEnabled(true);
-            tipo_relacion.setEnabled(false);
-        }
-    }//GEN-LAST:event_mr_relacionItemStateChanged
-
-    private void mr_personaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mr_personaItemStateChanged
-        if(mr_persona.isSelected()){
-            relacion_con.setEnabled(false);
-            tipo_relacion.setEnabled(true);
-        }
-    }//GEN-LAST:event_mr_personaItemStateChanged
-
-    private void mr_ambasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mr_ambasItemStateChanged
-       if(mr_ambas.isSelected()){
-          relacion_con.setEnabled(true);
-          tipo_relacion.setEnabled(true); 
-       }
-    }//GEN-LAST:event_mr_ambasItemStateChanged
+    }//GEN-LAST:event_cb_ModificarRelacionActor1ItemStateChanged
 
     private void e_actorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_e_actorItemStateChanged
-        if(e_actor.isSelected()){
+        if (e_actor.isSelected()) {
             eliminar_pelicula.setEnabled(false);
             eliminar_actor.setEnabled(true);
         }
     }//GEN-LAST:event_e_actorItemStateChanged
 
     private void e_peliculaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_e_peliculaItemStateChanged
-        if(e_pelicula.isSelected()){
+        if (e_pelicula.isSelected()) {
             eliminar_pelicula.setEnabled(true);
             eliminar_actor.setEnabled(false);
         }
     }//GEN-LAST:event_e_peliculaItemStateChanged
 
     private void e_relacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_e_relacionItemStateChanged
-        if(e_relacion.isSelected()){
+        if (e_relacion.isSelected()) {
             eliminar_pelicula.setEnabled(false);
             eliminar_actor.setEnabled(false);
         }
@@ -1594,17 +1662,64 @@ public class Proyecto extends javax.swing.JFrame {
             }
         } else if (eliminar_pelicula.isEnabled()) {
             for (int j = 0; j < peliculas.size(); j++) {
-                if(peliculas.get(j).getTitulo().equalsIgnoreCase(eliminar_pelicula.getText())){
+                if (peliculas.get(j).getTitulo().equalsIgnoreCase(eliminar_pelicula.getText())) {
                     peliculas.remove(j);
                     reporte = "Se elimino la pelicula " + eliminar_pelicula.getText();
                     pila.push(reporte);
                 }
             }
         }
-        
+
         eliminar_actor.setText("");
         eliminar_pelicula.setText("");
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void CargarPeliculasVentanaNuevoActor(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CargarPeliculasVentanaNuevoActor
+        this.cb_NuevoPeliculaAActor.removeAllItems();
+        for (int i = 0; i < this.peliculas.size(); i++) {
+            this.cb_NuevoPeliculaAActor.addItem(peliculas.get(i).getTitulo());
+        }
+
+    }//GEN-LAST:event_CargarPeliculasVentanaNuevoActor
+
+    private void CargarActoresVentanaBaconNumber(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CargarActoresVentanaBaconNumber
+        this.cb_Actor1_Bacon.removeAllItems();
+        this.cb_Actor2_Bacon.removeAllItems();
+        for (int i = 0; i < this.vertices.size(); i++) {
+            this.cb_Actor1_Bacon.addItem(vertices.get(i).getActor().getNombre());
+            this.cb_Actor2_Bacon.addItem(vertices.get(i).getActor().getNombre());
+        }
+    }//GEN-LAST:event_CargarActoresVentanaBaconNumber
+
+    private void BACONEAR(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BACONEAR
+        DijkstraShortestPath<MyNode, MyLink> alg = new DijkstraShortestPath(Graph);
+        List<MyLink> TOCINO = alg.getPath(vertices.get(this.cb_Actor1_Bacon.getSelectedIndex()), vertices.get(this.cb_Actor2_Bacon.getSelectedIndex()));
+        System.out.println(TOCINO.toString());//rico tocino
+    }//GEN-LAST:event_BACONEAR
+
+    private void BACONNUMBERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACONNUMBERActionPerformed
+        this.jd_BaconNumber.setModal(true);
+        this.jd_BaconNumber.pack();
+        this.jd_BaconNumber.setLocationRelativeTo(this.frame);
+        this.jd_BaconNumber.setVisible(true);
+    }//GEN-LAST:event_BACONNUMBERActionPerformed
+
+    private void CargarRelacionesVentanaModificar(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CargarRelacionesVentanaModificar
+        this.cb_ModificarRelacionActor1.removeAllItems();
+        this.cb_ModificarRelacionActor2.removeAllItems();
+        for (int i = 0; i < vertices.size(); i++) {
+            System.out.println(i);
+            this.cb_ModificarRelacionActor1.addItem(vertices.get(i).getActor().getNombre());
+            this.cb_ModificarRelacionActor2.addItem(vertices.get(i).getActor().getNombre());
+        }
+    }//GEN-LAST:event_CargarRelacionesVentanaModificar
+
+    private void BotonAbrirVentanaModificarRelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbrirVentanaModificarRelacionActionPerformed
+        this.jd_ModificarRelacion.pack();
+        this.jd_ModificarRelacion.setModal(true);
+        this.jd_ModificarRelacion.setLocationRelativeTo(null);
+        this.jd_ModificarRelacion.setVisible(true);
+    }//GEN-LAST:event_BotonAbrirVentanaModificarRelacionActionPerformed
     private boolean isInList(String nombre) {
         for (int i = 0; i < this.actores.size(); i++) {
             if (actores.get(i).getNombre().equals(nombre)) {
@@ -1660,6 +1775,7 @@ public class Proyecto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarNuevaPeliculaAActor;
+    private javax.swing.JMenuItem BACONNUMBER;
     private javax.swing.JMenuItem BotonAbrirVentanaAgregarRelacion;
     private javax.swing.JMenuItem BotonAbrirVentanaEliminarActor;
     private javax.swing.JMenuItem BotonAbrirVentanaHistorial;
@@ -1673,7 +1789,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JDialog Eliminar;
     private javax.swing.JDialog Historial;
     private javax.swing.JDialog Modificar;
-    private javax.swing.JDialog Modificar_relacion;
     private javax.swing.ButtonGroup actor;
     private javax.swing.JRadioButton b_año;
     private javax.swing.JRadioButton b_edad;
@@ -1683,8 +1798,13 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JRadioButton b_titulo;
     private javax.swing.JRadioButton bn_nombre;
     private javax.swing.JComboBox buscar_nombre;
+    private javax.swing.JComboBox cb_Actor1_Bacon;
+    private javax.swing.JComboBox cb_Actor2_Bacon;
     private javax.swing.JComboBox cb_AgregarNuevaRelacionActor2;
     private javax.swing.JComboBox cb_AgregarNuevoRelacionActor1;
+    private javax.swing.JComboBox cb_ModificarRelacionActor1;
+    private javax.swing.JComboBox cb_ModificarRelacionActor2;
+    private javax.swing.JComboBox cb_ModificarRelacion_Relacion;
     private javax.swing.JComboBox cb_NuevaRelacionRelacion;
     private javax.swing.JComboBox cb_NuevoPeliculaAActor;
     private javax.swing.JRadioButton e_actor;
@@ -1696,6 +1816,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1723,13 +1844,14 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1748,6 +1870,8 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JDialog jd_AgregarNuevaPelicula;
     private javax.swing.JDialog jd_AgregarNuevaRelacion;
     private javax.swing.JDialog jd_AgregarNuevoActor;
+    private javax.swing.JDialog jd_BaconNumber;
+    private javax.swing.JDialog jd_ModificarRelacion;
     private javax.swing.JTextField m_año;
     private javax.swing.JSpinner m_edad;
     private javax.swing.JTextField m_estudio;
@@ -1755,31 +1879,26 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JTextField m_nombre;
     private javax.swing.JComboBox m_pelicula;
     private javax.swing.JTextField m_titulo;
-    private javax.swing.JComboBox ma_relacion;
-    private javax.swing.JRadioButton mr_ambas;
-    private javax.swing.JRadioButton mr_persona;
-    private javax.swing.JRadioButton mr_relacion;
     private javax.swing.ButtonGroup pelicula;
-    private javax.swing.JComboBox relacion_con;
     private javax.swing.JSpinner sp_NuevoEdadActor;
     private javax.swing.JTextField tf_AgregarNuevoPeliculaAñoDeExhibicion;
     private javax.swing.JTextField tf_AgregarNuevoPeliculaEstudio;
     private javax.swing.JTextField tf_AgregarNuevoPeliculaTitulo;
     private javax.swing.JTextField tf_NuevoActorNacionalidad;
     private javax.swing.JTextField tf_NuevoNombreActor;
-    private javax.swing.JTextField tipo_relacion;
     private javax.swing.JTextField ver_ultimo;
     // End of variables declaration//GEN-END:variables
-ArrayList<Pelicula> peliculas;
+    ArrayList<Pelicula> peliculas = new ArrayList();
     ArrayList<Pelicula> peliculas_agregar_a_nuevo_actor = new ArrayList();
     ArrayList<Actor> actores = new ArrayList();
     ArrayList<MyNode> vertices = new ArrayList();
-    UndirectedSparseGraph RELACIONES = new UndirectedSparseGraph<MyNode, MyLink>();
+    UndirectedSparseGraph Graph = new UndirectedSparseGraph<MyNode, MyLink>();
+    ArrayList<MyLink> relaciones = new ArrayList();
     Stack<String> pila = new Stack<>();
-    DefaultComboBoxModel b_nombre;
-    DefaultComboBoxModel  a_relacion;
-    DefaultComboBoxModel b_p;
-    DefaultComboBoxModel m_relacion;
+    DefaultComboBoxModel b_nombre = new DefaultComboBoxModel();
+    DefaultComboBoxModel a_relacion = new DefaultComboBoxModel();
+    DefaultComboBoxModel b_p = new DefaultComboBoxModel();
+    DefaultComboBoxModel m_relacion = new DefaultComboBoxModel();
     String validar_nombre;
     String validar_pelicula;
     String reporte;
